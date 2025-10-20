@@ -16,9 +16,6 @@ Ce projet est une application web permettant de calculer l'Indice de Masse Corpo
 - **JavaScript** : Calcul de l'IMC et gestion de la logique des résultats.
 - **Bootstrap** : Framework CSS pour une mise en page réactive et moderne.
 
-## Déploiement
-Ce site est déployé sur Github Pages. Vous pouvez tester l'application ici : https://imc-calculator-lilac.vercel.app
-
 ## Usage
 - Entrez votre poids en kilogrammes (kg) et votre taille en mètres (m).
 - Cliquez sur le bouton Calculer pour obtenir votre IMC.
