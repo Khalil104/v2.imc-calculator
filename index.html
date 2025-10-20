@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Calculateur d'IMC - Calculez votre Indice de Masse Corporelle rapidement et facilement">
+    <meta name="keywords" content="IMC, calculateur, santé, poids, taille, indice de masse corporelle">
+    <meta name="author" content="Abdoul Rachid">
+    <link rel="canonical" href="https://rachidbissare.vercel.app" />
+    <!-- Open Graph / Social -->
+    <meta property="og:title" content="Calculateur d'IMC" />
+    <meta property="og:description" content="Calculez votre IMC et découvrez votre catégorie de poids. Outil simple et rapide." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://rachidbissare.vercel.app" />
+    <meta property="og:site_name" content="IMC Calculator" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:creator" content="@rachidbissare" />
+    <meta name="robots" content="index, follow">
+    <title>BMI Calculator</title>
+    
+    <!-- Prefetch / Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Source Sans Pro - preload best-effort -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" />
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap CSS (minimized CDN) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet" integrity="" crossorigin="anonymous">
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Local stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📊</text></svg>">
+
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">Calculateur d'IMC</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">À propos de l'IMC</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Conseils santé</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container py-5">
+        <div class="row justify-content-center mb-5">
+            <div class="col-md-10">
+                <h1 class="text-center mb-4" data-aos="fade-down">Calculateur d'Indice de Masse Corporelle (IMC)</h1>
+                <p class="text-center mb-5" data-aos="fade-down" data-aos-delay="100">Calculez votre IMC pour vérifier si votre poids est dans une fourchette saine. L'IMC est une mesure qui utilise votre taille et votre poids pour estimer si votre poids est adapté.</p>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card bmi-card" data-aos="fade-up">
+                    <div class="card-body p-4">
+                        <h2 class="card-title text-center mb-4">Calculez votre IMC</h2>
+                        
+                        <form id="bmiForm">
+                            <div class="mb-3">
+                                <label for="weight" class="form-label">Poids (kg)</label>
+                                <input type="number" class="form-control" id="weight" placeholder="Entrez votre poids" min="30" max="300" required>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="height" class="form-label">Taille (m)</label>
+                                <input type="number" class="form-control" id="height" placeholder="Entrez votre taille" step="0.01" min="0.5" max="2.5" required>
+                                <div class="form-text">Exemple : 1.75 pour 175 cm</div>
+                            </div>
+                            
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                <button type="button" id="resetBtn" class="btn btn-outline-secondary">Réinitialiser</button>
+                                <button type="submit" class="btn btn-gradient">Calculer l'IMC</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Result Section -->
+        <div class="row justify-content-center mt-4">
+            <div class="col-md-8">
+                <div class="result-area p-4 d-none" id="resultContainer" data-aos="fade-up" data-aos-delay="200">
+                    <h3 class="text-center mb-3">Votre résultat</h3>
+                    <div class="text-center">
+                        <div id="bmiValue">-</div>
+                        <div id="bmiCategory" class="mt-2">-</div>
+                        <p id="bmiDescription" class="mt-3">-</p>
+                        
+                        <!-- BMI Progress Bar -->
+                        <div class="progress mt-3">
+                            <div class="progress-bar" id="bmiProgress" role="progressbar" style="width: 0%"></div>
+                        </div>
+                        
+                        <!-- Healthy Weight Range -->
+                        <div class="healthy-range mt-3" id="healthyRangeContainer">
+                            <p id="healthyRangeText"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- BMI Chart -->
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="bmi-chart" data-aos="fade-up" data-aos-delay="300">
+                    <h3 class="text-center my-4">Catégories d'IMC</h3>
+                    <table class="table">
+                        <thead>
+                            <tr class="table-dark">
+                                <th>BMI Range</th>
+                                <th>Catégorie</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="bmi-underweight">
+                                <td>Inférieur à 18,5</td>
+                                <td>Insuffisance pondérale</td>
+                            </tr>
+                            <tr class="bmi-normal">
+                                <td>18,5 - 24,9</td>
+                                <td>Poids normal</td>
+                            </tr>
+                            <tr class="bmi-overweight">
+                                <td>25,0 - 29,9</td>
+                                <td>Surpoids</td>
+                            </tr>
+                            <tr class="bmi-obese">
+                                <td>30,0 et plus</td>
+                                <td>Obésité</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Health Tips -->
+        <div class="row justify-content-center mt-5">
+            <div class="col-md-10">
+                <div class="card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="card-body">
+                        <h3 class="card-title">Conseils santé</h3>
+                        <p>Rappelez-vous que l'IMC est un indicateur simplifié qui ne prend pas en compte des facteurs comme la masse musculaire, la densité osseuse ou la composition corporelle. Pour une évaluation complète de votre santé, consultez un professionnel de la santé.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer data-aos="fade-up">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <p class="mb-0">© 2025 Calculateur d'IMC. Tous droits réservés.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p class="mb-0">Développé par Abdoul Rachid — <a href="https://rachidbissare.vercel.app" target="_blank" rel="noopener noreferrer">Mon espace pro</a></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <!-- AOS JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- Local JS -->
+    <script src="js/script.js"></script>
+</body>
+</html>

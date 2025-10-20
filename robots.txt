@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Point to portfolio (canonical site) and sitemap if present
+Sitemap: https://rachidbissare.vercel.app/sitemap.xml
+
+# Disallow common sensitive paths (no such paths in this simple site but good practice)
+Disallow: /node_modules/
+Disallow: /.env

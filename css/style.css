@@ -1,0 +1,125 @@
+ /* Police : Source Sans 3 (Source Sans Pro successeur) via Google Fonts. Chargée depuis index.html avec preload/preconnect pour de meilleures performances */
+
+body {
+    font-family: 'Source Sans 3', 'Source Sans Pro', Arial, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    padding-top: 60px;
+}
+
+.navbar {
+    background: linear-gradient(to right, #1D809F, #0f4f5a); /* couleur principale #1D809F */
+}
+
+.navbar-brand {
+    font-weight: 700;
+    color: #fff !important;
+}
+
+.container {
+    max-width: 800px;
+}
+
+.bmi-card {
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(13, 13, 13, 0.08);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    border: none;
+}
+
+.bmi-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 30px rgba(13, 13, 13, 0.12);
+}
+
+.result-area {
+    min-height: 100px;
+    border-radius: 10px;
+    background-color: #ffffff;
+    transition: all 0.25s ease;
+    border: 1px solid #e9eef0;
+}
+
+.result-area.has-result {
+    background-color: #f0fbff;
+    border-left: 6px solid #1D809F;
+}
+
+#bmiValue {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1D809F;
+}
+
+#bmiCategory {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+footer {
+    background: linear-gradient(to right, #0f4f5a, #1D809F);
+    color: #fff;
+    padding: 20px 0;
+    margin-top: 50px;
+}
+
+.btn-gradient {
+    background: linear-gradient(to right, #1D809F, #0f4f5a);
+    border: none;
+    color: white;
+}
+
+.btn-gradient:hover {
+    background: linear-gradient(to right, #0f4f5a, #1D809F);
+    color: white;
+}
+
+.bmi-chart {
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 30px;
+}
+
+.bmi-chart .table {
+    margin-bottom: 0;
+}
+
+/* couleurs plus douces pour les catégories */
+.bmi-underweight { background-color: #cfeffd; }
+.bmi-normal { background-color: #dff5e8; }
+.bmi-overweight { background-color: #fff4cc; }
+.bmi-obese { background-color: #ffe3d0; }
+
+.invalid-feedback {
+    color: #dc3545;
+    font-size: 0.875rem;
+}
+
+.is-invalid {
+    border-color: #dc3545;
+}
+
+.healthy-range {
+    background-color: #e9f7fa;
+    border-radius: 8px;
+    padding: 10px;
+    margin-top: 15px;
+    border: 1px solid rgba(29,128,159,0.08);
+}
+
+.progress {
+    height: 20px;
+    margin-top: 10px;
+    background-color: #e9eef0;
+}
+
+.progress-bar {
+    transition: width 1s ease-in-out;
+}
+
+/* Correction d'affichage mobile */
+@media (max-width: 576px) {
+    body { padding-top: 70px; }
+    .container { padding: 0 12px; }
+    #bmiValue { font-size: 1.6rem; }
+}
